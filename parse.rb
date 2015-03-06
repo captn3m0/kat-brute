@@ -18,8 +18,15 @@ CSV.foreach("data.csv") do |row|
 
   # Download the kat info page if its not present
   unless File.file?(html)
-    `wget "#{kat_url}" -P "./html/" -O "#{html}.gz"`
-    `gunzip "#{html}.gz"`
+    while !File.file?("#{html}.gz") or File.size("#{html}.gz") == 0
+      `wget --quiet "#{kat_url}" -P "./html/" -O "#{html}.gz"`
+    end
+    if File.size?("#{html}.gz")
+      `gunzip "#{html}.gz"`
+    else
+      puts "Error in wget"
+      next
+    end
   end
 
   # Read the page
