@@ -3,7 +3,7 @@ require 'csv'
 require 'nokogiri'
 require 'json'
 
-File.truncate('data.jdb', 0)
+File.truncate('data.jdb', 0) if File.file?('data.jdb')
 
 CSV.foreach("data.csv") do |row|
   title = row[0]
