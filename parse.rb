@@ -17,10 +17,10 @@ CSV.foreach("data.csv") do |row|
   puts "#{title}\t\t#{kat_url}"
 
   # Download the kat info page if its not present
-  unless File.file?(html)
-    while !File.file?("#{html}.gz") or File.size("#{html}.gz") == 0
-      `wget --no-check-certificate --quiet "#{kat_url}" -P "./html/" -O "#{html}.gz"`
-    end
+  unless File.file?(html) and File.size(html) > 0
+    # Lets delete the file if it exists
+    File.delete("#{html}.gz") if File.file?("#{html}.gz")
+    `wget --tries 10 --no-check-certificate --quiet "#{kat_url}" -P "./html/" -O "#{html}.gz"`
     if File.size?("#{html}.gz")
       `gunzip "#{html}.gz"`
     else
