@@ -29,6 +29,9 @@ CSV.foreach("data.csv") do |row|
     end
   end
 
+  # We still might get blank files sometimes. Lets skip instead of trying to recover
+  next unless File.size?(html)
+
   # Read the page
   kat_page = Nokogiri::HTML(open(html))
 
