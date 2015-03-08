@@ -92,7 +92,8 @@ CSV.foreach("data.csv") do |row|
     :seeds=> seeders,
     :imdb=> imdb_id,
     :kat=> kat_url,
-    :files=> files
+    :files=> files,
+    :category=> category
   }
 
   File.open('data.jdb', 'a') do |db|
