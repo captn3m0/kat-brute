@@ -28,7 +28,6 @@ Since the production dataset is huge, we can test against smaller dataset (avail
     # Converts data.CSV to our required dataset
     ruby parse.rb
 
-Resulting output is availble in `data.jdb`
-
-
+Resulting output is availble in `data.jdb`. In case you just want the final dataset,
+a sample dataset can be found in `sample.jdb.gz`.
 
